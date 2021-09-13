@@ -9,7 +9,7 @@ import java.util.HashMap;
  * @Date: 2021/09/12/22:54
  * @Description:
  */
-public class 有效的括号字符串678 {
+public class _913有效的括号字符串 {
     public int numberOfBoomerangs(int[][] points) {
         // 三个点 x y z
         // x 到 y 的距离 = y 到 z 的距离
