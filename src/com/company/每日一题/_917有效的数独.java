@@ -1,4 +1,4 @@
-package com.company.everyDay;
+package com.company.每日一题;
 
 /**
  * Created with IntelliJ IDEA.

@@ -1,4 +1,4 @@
-package com.company.everyDay;
+package com.company.每日一题;
 
 /**
  * Created with IntelliJ IDEA.
@@ -35,4 +35,6 @@ public class _919只有两个键的键盘 {
         return Math.min(dfs(len + sum, step + 2, sum + len, n), dfs(len + sum, step + 1, sum, n));
 
     }
+
+
 }
