@@ -42,6 +42,7 @@ public class _914通过删除字母匹配到字典里最长单词 {
             return retultList.get(0);
         }
     }
+
     // 重写Sort版本
     public void findLongestWordTwo(String s, List<String> dictionary) {
         List<String> list = new ArrayList<>();
