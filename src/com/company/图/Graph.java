@@ -1,5 +1,9 @@
 package com.company.图;
 
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
+
 /**
  * Created with IntelliJ IDEA.
  *
@@ -8,9 +12,11 @@ package com.company.图;
  * @Description:
  */
 public class Graph {
-    // 出度
-    // 入度
-    // 当前值
-    // 边
-    //
+    public HashMap<Integer, Node> nodes;
+    public Set<Edge> edges;
+
+    public Graph() {
+        nodes = new HashMap<>();
+        edges = new HashSet<>();
+    }
 }

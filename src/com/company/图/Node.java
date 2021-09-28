@@ -1,5 +1,7 @@
 package com.company.图;
 
+import java.util.ArrayList;
+
 /**
  * Created with IntelliJ IDEA.
  *
@@ -8,5 +10,17 @@ package com.company.图;
  * @Description:
  */
 public class Node {
+    public int value;
+    public int in;
+    public int out;
+    public ArrayList<Node> nexts;
+    public ArrayList<Edge> edges;
 
+    public Node(int valuey) {
+        this.value = value;
+        in = 0;
+        out = 0;
+        nexts = new ArrayList<>();
+        edges = new ArrayList<>();
+    }
 }
