@@ -40,4 +40,27 @@ public class GraphGenerator {
         }
         return graph;
     }
+
+    public static Graph createGraph(int numCourses, int[][] prerequisites) {
+        Graph graph = new Graph();
+        for (int i = 0; i < prerequisites.length; i++) {
+            int from = prerequisites[i][0];
+            int to = prerequisites[i][1];
+            if (!graph.nodes.containsKey(from)) {
+                graph.nodes.put(from, new Node(from));
+            }
+            if (!graph.nodes.containsKey(to)) {
+                graph.nodes.put(to, new Node(to));
+            }
+            Node fromNode = graph.nodes.get(from);
+            Node toNode = graph.nodes.get(to);
+            Edge edge = new Edge(fromNode, toNode, 0);
+            fromNode.out++;
+            toNode.in++;
+            fromNode.nexts.add(toNode);
+            fromNode.edges.add(edge);
+            graph.edges.add(edge);
+        }
+        return graph;
+    }
 }
