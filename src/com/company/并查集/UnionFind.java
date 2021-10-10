@@ -42,7 +42,6 @@ class UnionAndFind {
 
     // 初始化
     // 每个人的大哥都是自己
-    //
     public UnionAndFind(int N) {
         parent = new int[N];
         size = new int[N];
@@ -71,7 +70,7 @@ class UnionAndFind {
         while (i != parent[i]) {
             i = parent[i];
         }
-        return 0;
+        return i;
     }
 
     public boolean isSameSet(int a, int b) {

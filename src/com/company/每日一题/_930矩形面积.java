@@ -1,5 +1,9 @@
 package com.company.每日一题;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 /**
  * Created with IntelliJ IDEA.
  *
@@ -20,7 +24,7 @@ public class _930矩形面积 {
         int y2Max = Math.max(by1, by2);
         int y2Min = Math.min(by1, by2);
 
-        List<Integer> listx = new ArrayList<>() {{
+        List<Integer> listx = new ArrayList<Integer>() {{
             add(ax1);
             add(ax2);
             add(bx1);
@@ -29,7 +33,7 @@ public class _930矩形面积 {
 
         int sum1 = (x1Max - x1Min) * (y1Max - y1Min);
         int sum2 = (x2Max - x2Min) * (y2Max - y2Min);
-        List<Integer> listy = new ArrayList<>() {{
+        List<Integer> listy = new ArrayList<Integer>() {{
             add(ay1);
             add(ay2);
             add(by1);
