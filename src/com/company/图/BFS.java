@@ -10,6 +10,20 @@ import java.util.*;
  * @Description:
  */
 public class BFS {
+    public static void main(String[] args) {
+        Node node0 = new Node(0);
+        Node node1 = new Node(1);
+        Node node2 = new Node(2);
+        Node node3 = new Node(3);
+        Node node4 = new Node(4);
+        Node node5 = new Node(5);
+        node0.nexts.add(node3);
+        node0.nexts.add(node1);
+        node3.nexts.add(node2);
+        node3.nexts.add(node4);
+        node4.nexts.add(node5);
+        BFS(node0);
+    }
     /**
      * 广度优先搜索
      *
@@ -26,7 +40,7 @@ public class BFS {
         set.add(node);
         while (!queue.isEmpty()) {
             Node cur = queue.poll();
-            System.out.println(cur.value);
+            System.out.print(cur.value + " ");
             for (Node next : cur.nexts) {
                 if (!set.contains(next)) {
                     queue.add(next);

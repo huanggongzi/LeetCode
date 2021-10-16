@@ -8,23 +8,32 @@ package com.company.每日一题;
  * @Description:
  */
 public class _1015外观数列 {
-    public String countAndSay(int n) {
-        String str = "1";
-        for (int i = 2; i <= n; ++i) {
-            StringBuilder sb = new StringBuilder();
-            int start = 0;
-            int pos = 0;
+    public static void main(String[] args) {
+        System.out.println();
+    }
 
-            while (pos < str.length()) {
-                while (pos < str.length() && str.charAt(pos) == str.charAt(start)) {
-                    pos++;
-                }
-                sb.append(Integer.toString(pos - start)).append(str.charAt(start));
-                start = pos;
-            }
-            str = sb.toString();
+    public static String countAndSay(int n) {
+        StringBuffer sb = new StringBuffer("1");
+        for (int i = 2; i <= n; i++) {
+            sb = miaoshu(sb.toString());
         }
+        return sb.toString();
+    }
 
-        return str;
+
+    public static StringBuffer miaoshu(String string) {
+        int len = string.length();
+        StringBuffer sb = new StringBuffer();
+        int left = 0;
+        while (left < len) {
+            int num = 1;
+            while (left < len - 1 && string.charAt(left) == string.charAt(left + 1)) {
+                num++;
+                left++;
+            }
+            sb.append(num + "" + string.charAt(left));
+            left++;
+        }
+        return sb;
     }
 }
