@@ -30,26 +30,20 @@ public class _1171从链表中删去总和值为零的连续节点 {
             pre[i] = node.val + pre[i - 1];
             if (map.containsKey(pre[i])) {
                 ListNode next = map.get(pre[i]);
-                next.next = node.next;
-                int start = remove(pre[i], pre);
-                for (int j = start + 1; j <= i; j++) {
-                    map.remove(pre[j]);
+                ListNode p = next.next;
+                int value = pre[i] + p.val;
+                while (value != pre[i]) {
+                    map.remove(value);
+                    p = p.next;
+                    value += p.val;
                 }
+                next.next = node.next;
             } else {
                 map.put(pre[i], node);
             }
             node = node.next;
         }
         return dumy.next;
-    }
-
-    public int remove(int value, int[] pre) {
-        for (int i = 0; i < pre.length; i++) {
-            if (pre[i] == value) {
-                return i;
-            }
-        }
-        return 0;
     }
 }
 
