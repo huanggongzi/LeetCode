@@ -1,4 +1,4 @@
-package com.company.递归;
+package com.company.递归.递归第一节;
 
 import java.util.Stack;
 
@@ -10,8 +10,6 @@ import java.util.Stack;
  * @Description:
  */
 public class 逆序栈 {
-
-
     public int finalValue(Stack<Integer> stack) {
         int value = stack.pop();
         if (stack.isEmpty()) {

@@ -10,6 +10,7 @@ import java.util.HashMap;
  * @Description:
  */
 public class _913有效的括号字符串 {
+    // git config --global http.sslVerify "false"
     public int numberOfBoomerangs(int[][] points) {
         // 三个点 x y z
         // x 到 y 的距离 = y 到 z 的距离
