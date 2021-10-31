@@ -87,24 +87,37 @@ public class DecisionFlow {
 
 
         // 初始化决策流
+        System.out.println("决策流初始化.......");
         int[][] matix = new int[][]{{1, 3}, {2, 3}, {3, 4}};
         DecisionFlowGraph graph = initialization(matix);
+
+        // 获取最终的分数
         getScore(graph, map);
-        System.out.println(finalScore);
+        System.out.println("最终得分：" + finalScore);
     }
 
 
     public static void getScore(DecisionFlowGraph graph, HashMap<String, String> map) {
+        int num = 1;
+        // 使用一个队列
         Queue<DecisionFlowPoint> queue = new LinkedList<>();
+
+        // 遍历所有的点，找到入度为 0 的点
         for (DecisionFlowPoint point : graph.points.values()) {
             // 入度为0
             if (point.in == 0) {
                 queue.add(point);
             }
         }
+
+        // 当前的队列不为空
         while (!queue.isEmpty()) {
+            // 弹出当前队列的头
             DecisionFlowPoint point = queue.poll();
+            // 使用当前该点代表的策略集
             finalScore = finalScore + resolve(point, map);
+            System.out.println("当前点的类型为："+ point.policy.type + "，使用完该点的分数为" + finalScore);
+            // 将该点所连接的点的入度减一
             for (DecisionFlowPoint next : point.points) {
                 next.in--;
                 if (next.in == 0) {
