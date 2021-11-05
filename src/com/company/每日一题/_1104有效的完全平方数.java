@@ -14,7 +14,7 @@ public class _1104有效的完全平方数 {
         }
         double ans = num;
         double dir = num;
-        while(ans * ans - dir >= 1e-6){
+        if(ans * ans - dir >= 1e-6){
             ans = ans / 2 + dir / (2 * ans);
         }
         int x = (int)ans;
