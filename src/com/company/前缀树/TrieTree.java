@@ -1,6 +1,10 @@
 package com.company.前缀树;
 
+import javax.xml.stream.FactoryConfigurationError;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created with IntelliJ IDEA.
@@ -12,12 +16,12 @@ import java.util.List;
 public class TrieTree {
     public static void main(String[] args) {
         Trie trie = new Trie();
-        trie.insert("apple");
-        trie.search("apple");   // 返回 True
-        trie.search("app");     // 返回 False
-        trie.startsWith("app"); // 返回 True
-        trie.insert("app");
-        trie.search("app");     // 返回 True
+        trie.insert("黄良帅");
+        trie.insert("黄良栋");
+        trie.insert("李锐");
+        System.out.println(trie.search("黄良帅"));   // 返回 True
+        System.out.println(trie.search("黄良"));    // 返回 False);
+        trie.startsWith("黄良"); // 返回 True
     }
 
     public static class Node {
@@ -102,47 +106,51 @@ public class TrieTree {
 class Trie {
     int pass;
     int end;
-    Trie[] tries;
+    Map<Character, Trie> tries;
 
     public Trie() {
         pass = 0;
         end = 0;
-        tries = new Trie[26];
+        tries = new HashMap<>();
     }
 
+    // "黄良帅"
     public void insert(String word) {
         if (word == null) {
             return;
         }
         char[] str = word.toCharArray();
         Trie trie = this;
-        int path = 0;
         for (int i = 0; i < str.length; i++) {
-            path = str[i] - 'a';
-            if (trie.tries[path] == null) {
-                trie.tries[path] = new Trie();
+            char ch = str[i];
+            if (!trie.tries.containsKey(ch)) {
+                trie.tries.put(ch, new Trie());
             }
             trie.pass++;
-            trie = trie.tries[path];
+            trie = trie.tries.get(ch);
         }
         trie.end++;
     }
 
+    // 查一个字符存不存在
     public boolean search(String word) {
         if (word == null) {
             return false;
         }
         char[] str = word.toCharArray();
         Trie trie = this;
-        int path = 0;
         for (int i = 0; i < str.length; i++) {
-            path = str[i] - 'a';
-            if (trie.tries[path] == null) {
+            char ch = str[i];
+            if (!trie.tries.containsKey(ch)) {
                 return false;
             }
-            trie = trie.tries[path];
+            trie = trie.tries.get(ch);
         }
-        return true;
+        if (trie.end >= 1) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public boolean startsWith(String prefix) {
@@ -151,26 +159,13 @@ class Trie {
         }
         char[] str = prefix.toCharArray();
         Trie trie = this;
-        int path = 0;
         for (int i = 0; i < str.length; i++) {
-            path = str[i] - 'a';
-            if (trie.tries[path] == null) {
+            char ch = str[i];
+            if (!trie.tries.containsKey(ch)) {
                 return false;
             }
-            trie = trie.tries[path];
+            trie = trie.tries.get(ch);
         }
         return true;
-    }
-}
-
-class Node1 {
-    int pass;
-    int end;
-    Node1[] tries;
-
-    public Node1() {
-        pass = 0;
-        end = 0;
-        tries = new Node1[26];
     }
 }

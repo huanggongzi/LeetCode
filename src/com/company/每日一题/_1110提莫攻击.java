@@ -1,5 +1,7 @@
 package com.company.每日一题;
 
+import java.util.HashMap;
+
 /**
  * Created with IntelliJ IDEA.
  *
