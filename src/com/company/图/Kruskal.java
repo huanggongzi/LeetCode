@@ -19,71 +19,118 @@ public class Kruskal {
         }
     }
 
-    public static Set<Edge> kruskalMST(Graph graph) {
+    public int minCostConnectPoints(int[][] points) {
+        Graph graph = new Graph();
+        for (int i = 0; i < points.length - 1; i++) {
+            int x1 = points[i][0];
+            int y1 = points[i][1];
+            for (int j = i + 1; j < points.length; j++) {
+                int x2 = points[j][0];
+                int y2 = points[j][1];
+                int value = getval(x1, y1, x2, y2);
+                addNode(graph, value, i, j);
+            }
+        }
         Union union = new Union();
-        union.makeSets(graph.nodes.values());
+        for (Node node : graph.nodes.values()) {
+            union.makeSets(node);
+        }
         PriorityQueue<Edge> priorityQueue = new PriorityQueue<>(new EdgeComparator());
         for (Edge edge : graph.edges) {
             priorityQueue.add(edge);
         }
-        Set<Edge> set = new HashSet<>();
+        int sum = 0;
         // 从最小的开始
         while (!priorityQueue.isEmpty()) {
             Edge edge = priorityQueue.poll();
             // 看一下是否存在环
             if (!union.isSame(edge.from, edge.to)) {
-                set.add(edge);
+                sum = sum + edge.weight;
                 union.union(edge.from, edge.to);
             }
         }
-        return set;
+        return sum;
+    }
+
+
+    public void addNode(Graph graph, int value, int i, int j) {
+        int from = i;
+        int to = j;
+        int weight = value;
+        if (!graph.nodes.containsKey(from)) {
+            graph.nodes.put(from, new Node(from));
+        }
+        if (!graph.nodes.containsKey(to)) {
+            graph.nodes.put(to, new Node(to));
+        }
+        Node fromNode = graph.nodes.get(from);
+        Node toNode = graph.nodes.get(to);
+        Edge edge = new Edge(fromNode, toNode, weight);
+        fromNode.out++;
+        toNode.in++;
+        fromNode.nexts.add(toNode);
+        fromNode.edges.add(edge);
+        graph.edges.add(edge);
+
+    }
+
+    public int getval(int x1, int y1, int x2, int y2) {
+        return Math.abs(x1 - x2) + Math.abs(y1 - y2);
     }
 }
 
 /**
- * 并查集：合并
+ * 并查集
  */
 class Union {
-    // 父亲的节点
+    // 当前节点的父节点
     Map<Node, Node> parent;
-    // 当前节点所挂的节点
+    // 当前节点所挂的节点数量
     Map<Node, Integer> size;
 
+    // 初始化
     public Union() {
         parent = new HashMap<>();
         size = new HashMap<>();
     }
 
-    public void makeSets(Collection<Node> list) {
-        for (Node node : list) {
-            parent.put(node, node);
-            size.put(node, 1);
-        }
+    // 赋予初始值
+    public void makeSets(Node node) {
+
+        parent.put(node, node);
+        size.put(node, 1);
+
     }
 
     // 合并
     public void union(Node node1, Node node2) {
-        if (!isSame(node1, node2)) {
-            int size1 = size.get(node1);
-            int size2 = size.get(node2);
+        // 找到两个节点的父节点
+        Node node1Parent = getParentNode(node1);
+        Node node2Parent = getParentNode(node2);
+        // 看看是不是一个父亲
+        if (node1Parent != node2Parent) {
+            // node1、node2父亲的节点数量
+            int size1 = size.get(node1Parent);
+            int size2 = size.get(node2Parent);
+            // 谁的节点多，少的就挂在多的下面，进行合并
             if (size1 >= size2) {
-                // 将size2挂在size1的下面
-                parent.put(parentNode(node2), node1);
-                size.put(node1, size1 + size2);
-                size.remove(node2);
+                parent.put(node1Parent, node2Parent);
+                size.put(node1Parent, size1 + size2);
+                size.remove(node2Parent);
             } else {
-                parent.put(parentNode(node1), node2);
-                size.put(node2, size1 + size2);
-                size.remove(node1);
+                parent.put(node2Parent, node1Parent);
+                size.put(node2Parent, size1 + size2);
+                size.remove(node2Parent);
             }
         }
     }
 
     public boolean isSame(Node node1, Node node2) {
-        return parentNode(node1) == parentNode(node2);
+        return getParentNode(node1) == getParentNode(node2);
     }
 
-    public Node parentNode(Node node) {
+    public Node getParentNode(Node node) {
+        // 为了路径压缩
         Stack<Node> stack = new Stack<>();
         while (parent.get(node) != node) {
             stack.add(node);
