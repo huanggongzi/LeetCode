@@ -15,11 +15,11 @@ public class _1121N叉树的最大深度 {
             return 0;
         }
         int maxChildDepth = 0;
-        List<Node> children = root.children;
-        for (Node child : children) {
-            int childDepth = maxDepth(child);
-            maxChildDepth = Math.max(maxChildDepth, childDepth);
-        }
+        //List<Node> children = root.children;
+//        for (Node child : children) {
+//            int childDepth = maxDepth(child);
+//            maxChildDepth = Math.max(maxChildDepth, childDepth);
+//        }
         return maxChildDepth + 1;
     }
 }
