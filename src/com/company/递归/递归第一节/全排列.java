@@ -1,7 +1,6 @@
 package com.company.递归.递归第一节;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created with IntelliJ IDEA.
@@ -99,5 +98,54 @@ public class 全排列 {
         char ch = rest[i];
         rest[i] = rest[j];
         rest[j] = ch;
+    }
+
+    public int[] findEvenNumbers(int[] digits) {
+        Set<Integer> set = new HashSet<>();
+        for (int i = 0; i < digits.length; i++) {
+            for (int j = 0; j < digits.length; j++) {
+                for (int k = 0; k < digits.length; k++) {
+                    if (i != j && j != k && i != k) {
+                        getSum(digits[i], digits[j], digits[k], set);
+                    }
+                }
+            }
+        }
+
+        int[] arr = new int[set.size()];
+        int num = 0;
+        for(Integer value : set){
+            arr[num++] = value;
+        }
+        Arrays.sort(arr);
+        return arr;
+    }
+
+    public void getSum(int a, int b, int c, Set<Integer> set) {
+        if (getNum(a, b, c) >= 0) {
+            set.add(getNum(a, b, c));
+        }
+        if (getNum(a, c, b) >= 0) {
+            set.add(getNum(a, c, b));
+        }
+        if (getNum(b, a, c) >= 0) {
+            set.add(getNum(b, a, c));
+        }
+        if (getNum(b, c, a) >= 0) {
+            set.add(getNum(b, c, a));
+        }
+        if (getNum(c, a, b) >= 0) {
+            set.add(getNum(c, a, b));
+        }
+        if (getNum(c, b, a) >= 0) {
+            set.add(getNum(c, b, a));
+        }
+    }
+
+    public int getNum(int a, int b, int c) {
+        if (a == 0 || c % 2 == 1) {
+            return -1;
+        }
+        return a * 100 + b * 10 + c;
     }
 }
