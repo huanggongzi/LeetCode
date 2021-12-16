@@ -1,4 +1,4 @@
-package com.company.每日一题._1215;
+package com.company.每日一题;
 
 import java.util.*;
 
@@ -9,7 +9,7 @@ import java.util.*;
  * @Date: 2021/12/15/23:46
  * @Description:
  */
-public class 喧闹和富有 {
+public class _1215喧闹和富有 {
     public int[] loudAndRich(int[][] richer, int[] quiet) {
         int n = quiet.length;
         int[] answer = new int[quiet.length];
