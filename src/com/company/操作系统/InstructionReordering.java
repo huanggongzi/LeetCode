@@ -7,7 +7,7 @@ package com.company.操作系统;
  * @Date: 2021/12/18/21:02
  * @Description:
  */
-public class instructionReordering {
+public class InstructionReordering {
     private static int x = 0, y = 0;
     private static int a = 0, b = 0;
 
