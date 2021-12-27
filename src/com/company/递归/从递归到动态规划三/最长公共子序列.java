@@ -7,7 +7,7 @@ package com.company.递归.从递归到动态规划三;
  * @Date: 2021/12/16/0:03
  * @Description:
  */
-public class Demo01 {
+public class 最长公共子序列 {
 
     public static void main(String[] args) {
 

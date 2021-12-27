@@ -7,7 +7,8 @@ package com.company.递归.从递归到动态规划三;
  * @Date: 2021/12/17/0:18
  * @Description:
  */
-public class Demo2 {
+public class 最长回文子串 {
+    // 最长回文子串
     public static void main(String[] args) {
         String str = "bbbab";
         System.out.println(lpsl(str));
@@ -60,7 +61,7 @@ public class Demo2 {
                 }
             }
         }
-        return dp[len - 1][len - 1];
+        return dp[0][len - 1];
     }
 
 }
