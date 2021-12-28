@@ -12,9 +12,8 @@ public class 走象棋 {
         int x = 7;
         int y = 7;
         int k = 10;
-        int sum = getNum(x, y, k, 0, 0);
-        int[][] dp = new int[10][9];
-        System.out.println(sum);
+        System.out.println(getNum(x, y, k, 0, 0));
+        System.out.println(dp(x, y, k));
     }
 
     public static int getNum(int x, int y, int k, int cow, int col) {
@@ -38,6 +37,36 @@ public class 走象棋 {
         int p7 = getNum(x, y, k - 1, cow + 2, col - 1);
         int p8 = getNum(x, y, k - 1, cow + 2, col + 1);
         return p1 + p2 + p3 + p4 + p5 + p6 + p7 + p8;
+    }
+
+    public static int dp(int x, int y, int rest) {
+        int[][][] dp = new int[10][9][rest + 1];
+        // 结束的标志
+        dp[x][y][0] = 1;
+        for (int k = 1; k <= rest; k++) {
+            for (int i = 0; i < 10; i++) {
+                for (int j = 0; j < 9; j++) {
+                    int ways = check(dp, k - 1, i - 2, j + 1);
+                    ways += check(dp, k - 1, i - 2, j - 1);
+                    ways += check(dp, k - 1, i - 1, j - 2);
+                    ways += check(dp, k - 1, i - 1, j + 2);
+                    ways += check(dp, k - 1, i + 1, j - 2);
+                    ways += check(dp, k - 1, i + 1, j + 2);
+                    ways += check(dp, k - 1, i + 2, j - 1);
+                    ways += check(dp, k - 1, i + 2, j + 1);
+                    dp[i][j][k] = ways;
+                }
+            }
+        }
+        return dp[0][0][rest];
+    }
+
+    public static int check(int[][][] dp, int rest, int x, int y) {
+        // 处理越界
+        if (x < 0 || x > 9 || y < 0 || y > 8 || rest < 0) {
+            return 0;
+        }
+        return dp[x][y][rest];
     }
 
 }
