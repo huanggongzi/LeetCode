@@ -39,15 +39,15 @@ public class _1228连接词 {
         for (int i = start; i < word.length(); i++) {
             char ch = word.charAt(i);
             int index = ch - 'a';
-            node = node.children[index];
+//            node = node.children[index];
             if (node == null) {
                 return false;
             }
-            if (node.isEnd) {
-                if (dfs(word, i + 1)) {
-                    return true;
-                }
-            }
+//            if (node.isEnd) {
+//                if (dfs(word, i + 1)) {
+//                    return true;
+//                }
+//            }
         }
         return false;
     }
@@ -57,11 +57,11 @@ public class _1228连接词 {
         for (int i = 0; i < word.length(); i++) {
             char ch = word.charAt(i);
             int index = ch - 'a';
-            if (node.children[index] == null) {
-                node.children[index] = new Trie();
-            }
-            node = node.children[index];
+//            if (node.children[index] == null) {
+//                node.children[index] = new Trie();
+//            }
+//            node = node.children[index];
         }
-        node.isEnd = true;
+//        node.isEnd = true;
     }
 }
