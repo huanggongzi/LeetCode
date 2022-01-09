@@ -26,14 +26,16 @@ public class Dijkstra {
         while (minNode != null) {
             // 遍历该点的所有边
             for (Edge edge : minNode.edges) {
-                if (map.containsKey(edge.to)) {
-                    // 如果该点被访问过，则需要看一下到达该点
-                    if (edge.weight + map.get(minNode) < map.get(edge.to)) {
+                if (!set.contains(edge.to)) {
+                    if (map.containsKey(edge.to)) {
+                        // 如果该点被访问过，则需要看一下到达该点
+                        if (edge.weight + map.get(minNode) < map.get(edge.to)) {
+                            map.put(edge.to, edge.weight + map.get(minNode));
+                        }
+                    } else {
+                        // 如果该点还没有被访问过
                         map.put(edge.to, edge.weight + map.get(minNode));
                     }
-                } else {
-                    // 如果该点还没有被访问过
-                    map.put(edge.to, edge.weight + map.get(minNode));
                 }
             }
             set.add(minNode);
@@ -107,11 +109,11 @@ public class Dijkstra {
         Graph graph = createGraph(times);
         Node from = new Node(k);
         HashMap<Node, Integer> map = dijkstra1(from);
-        if(map.size() != n){
+        if (map.size() != n) {
             return -1;
         }
         int max = -1;
-        for(Integer value : map.values()){
+        for (Integer value : map.values()) {
             max = Math.max(max, value);
         }
         return max;
