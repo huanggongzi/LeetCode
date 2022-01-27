@@ -1,5 +1,6 @@
 package com.company.每日一题;
 
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -12,18 +13,20 @@ import java.util.Map;
  */
 public class _20220126检测正方形 {
     public static void main(String[] args) {
+        _20220126检测正方形 p = new _20220126检测正方形();
+        p.Test();
+    }
+
+    public void Test() {
         DetectSquares detectSquares = new DetectSquares();
-        detectSquares.add(new int[]{3, 10});
-        detectSquares.add(new int[]{11, 2});
-        detectSquares.add(new int[]{3, 2});
-        detectSquares.count(new int[]{11, 10});
-        detectSquares.count(new int[]{14, 8});
-        detectSquares.add(new int[]{11, 2});
-        detectSquares.count(new int[]{11, 10);
+        detectSquares.add(new int[]{419,351});
+        detectSquares.add(new int[]{798,351});
+        detectSquares.add(new int[]{798,730});
+        detectSquares.count(new int[]{419,730});
     }
 }
 
- class DetectSquares {
+class DetectSquares {
     Map<String, Integer> map;
 
     public DetectSquares() {
@@ -31,7 +34,8 @@ public class _20220126检测正方形 {
     }
 
     public void add(int[] point) {
-        map.put(point[0] + " " + point[1], map.getOrDefault(point, 0) + 1);
+        String s = point[0] + " " + point[1];
+        map.put(s, map.getOrDefault(s, 0) + 1);
     }
 
     public int count(int[] point) {
@@ -49,14 +53,18 @@ public class _20220126检测正方形 {
                 // 如果向左走，两个点分别为
                 int x2 = x - len;
                 int y2 = y;
-                if (map.containsKey(x2 + " " + y2) && map.containsKey(x2 + "" + y1)) {
-                    sum = sum + Math.min(count, Math.min(map.get(x2 + " " + y2), map.get(x2 + "" + y1)));
+                String s1 = x2 + " " + y2;
+                String s2 = x2 + " " + y1;
+                if (map.containsKey(s1) && map.containsKey(s2)) {
+                    sum = sum + Math.max(count, Math.max(map.get(s1), map.get(s2)));
                 }
                 // 如果向右走
                 int x3 = x + len;
                 int y3 = y;
-                if (map.containsKey(x3 + " " + y3) && map.containsKey(x3 + "" + y1)) {
-                    sum = sum + Math.min(count, Math.min(map.get(x3 + " " + y3), map.get(x3 + "" + y1)));
+                s1 = x3 + " " + y3;
+                s2 = x3 + "" + y1;
+                if (map.containsKey(s1) && map.containsKey(s2)) {
+                    sum = sum + Math.max(count, Math.max(map.get(s1), map.get(s2)));
                 }
             }
         }
