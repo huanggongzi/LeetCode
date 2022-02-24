@@ -12,11 +12,11 @@ public class _20220223仅仅反转字母 {
         int left = 0;
         int right = s.length() - 1;
         char[] charArray = s.toCharArray();
-        while(left < right){
-            while(left < right && !f(charArray[left])){
+        while (left < right) {
+            while (left < right && !f(charArray[left])) {
                 left++;
             }
-            while(left < right && !f(charArray[right])){
+            while (left < right && !f(charArray[right])) {
                 right--;
             }
 
@@ -24,15 +24,14 @@ public class _20220223仅仅反转字母 {
             charArray[left++] = charArray[right];
             charArray[right--] = temp;
         }
-        return String.valueOf(charArray);
     }
 
 
-    public boolean f(char ch){
-        if(ch >= 'a' && ch <= 'z'){
+    public boolean f(char ch) {
+        if (ch >= 'a' && ch <= 'z') {
             return true;
         }
-        if(ch >= 'A' && ch <= 'Z'){
+        if (ch >= 'A' && ch <= 'Z') {
             return true;
         }
         return false;
