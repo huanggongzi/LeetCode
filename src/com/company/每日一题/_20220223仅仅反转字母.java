@@ -24,6 +24,7 @@ public class _20220223仅仅反转字母 {
             charArray[left++] = charArray[right];
             charArray[right--] = temp;
         }
+        return String.valueOf(charArray);
     }
 
 

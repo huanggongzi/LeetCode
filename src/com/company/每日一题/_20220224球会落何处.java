@@ -8,7 +8,12 @@ package com.company.每日一题;
  * @Description:
  */
 public class _20220224球会落何处 {
-    public int[] findBall(int[][] grid) {
+    public static void main(String[] args) {
+        int[][] array = new int[][]{{1,1},{-1,1}};
+        findBall(array);
+
+    }
+    public static int[] findBall(int[][] grid) {
         int len = grid[0].length;
         int[] answer = new int[len];
         for (int i = 0; i < len; i++) {
@@ -18,7 +23,7 @@ public class _20220224球会落何处 {
     }
 
 
-    public int dfs(int[][] grid, int i, int j) {
+    public static int dfs(int[][] grid, int i, int j) {
         if (i == grid.length) {
             return j;
         }
