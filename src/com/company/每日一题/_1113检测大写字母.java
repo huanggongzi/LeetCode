@@ -8,6 +8,9 @@ package com.company.每日一题;
  * @Description:
  */
 public class _1113检测大写字母 {
+    public static void main(String[] args) {
+    }
+
     public boolean detectCapitalUse(String word) {
         if (word.length() == 1) {
             return true;
