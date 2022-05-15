@@ -1,5 +1,10 @@
 package com.company.每日一题;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Queue;
+
 /**
  * Created with IntelliJ IDEA.
  *
@@ -15,21 +20,21 @@ public class _20220408N叉树的层序遍历 {
         }
         queue.add(root);
         List<List<Integer>> list = new ArrayList<>();
-        while(!queue.isEmpty()){
-            List<Integer> path = new ArrayList<>();
-            int size = queue.size();
-
-            for(int i = 0; i < size; i++){
-                Node node = queue.poll();
-                path.add(node.val);
-                if(node.children != null){
-                    for(Node ch : node.children){
-                        queue.add(ch);
-                    }
-                }
-            }
-            list.add(path);
-        }
+//        while(!queue.isEmpty()){
+//            List<Integer> path = new ArrayList<>();
+//            int size = queue.size();
+//
+//            for(int i = 0; i < size; i++){
+//                Node node = queue.poll();
+//                path.add(node.val);
+//                if(node.children != null){
+//                    for(Node ch : node.children){
+//                        queue.add(ch);
+//                    }
+//                }
+//            }
+//            list.add(path);
+//        }
         return list;
     }
 }
