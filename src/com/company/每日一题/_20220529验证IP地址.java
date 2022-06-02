@@ -7,9 +7,9 @@ package com.company.每日一题;
  * @Date: 2022/05/29/23:04
  * @Description:
  */
-public class _20220529468验证IP地址 {
+public class _20220529验证IP地址 {
     public static void main(String[] args) {
-        _20220529468验证IP地址 test = new _20220529468验证IP地址();
+        _20220529验证IP地址 test = new _20220529验证IP地址();
         test.validIPAddress("20EE:FGb8:85a3:0:0:8A2E:0370:7334");
     }
 
