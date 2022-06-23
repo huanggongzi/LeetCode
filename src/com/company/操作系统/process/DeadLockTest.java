@@ -10,6 +10,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  * @Description:
  */
 public class DeadLockTest {
+    // 用于死锁测试的代码
     public static Object o1 = new Object();
     public static Object o2 = new Object();
 
