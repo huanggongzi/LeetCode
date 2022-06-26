@@ -18,7 +18,7 @@ public class DeadLockTest {
 
 
         Thread thread1 = new Thread(new MyThread(o1, o2));
-        Thread thread2 = new Thread(new MyThread(o2, o1));
+        Thread thread2 = new Thread(new MyThread(o1, o2));
 
         // 设置名称
         thread1.setName("线程一");
