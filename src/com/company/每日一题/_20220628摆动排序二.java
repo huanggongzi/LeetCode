@@ -2,6 +2,7 @@ package com.company.每日一题;
 
 import java.util.Arrays;
 
+// 发布专用
 public class _20220628摆动排序二 {public void wiggleSort(int[] nums) {
     // 先做出来
     Arrays.sort(nums);
